@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{fragments1 :: head}"></head>
+
+<body>
+<div class="body">
+    <h1>Create Event</h1>
+
+    <div th:switch="${creationSuccess}">
+        <div th:case="'Success'" class="alert alert-success">
+            <strong>Success!</strong> Event created successfully.
+        </div>
+        <div th:case="'Failed'" class="alert alert-danger">
+            <strong>Failure!</strong> Event creation failed. Please try again.
+        </div>
+    </div>
+
+    <form th:action="@{/events/create}" method="post" th:object="${event}" class="px-4">
+        <div class="mb-3 row">
+            <label for="eventName" class="col-sm-2 col-form-label">Event Name</label>
+            <div class="col-sm-6">
+                <input type="text" id="eventName" autofocus="autofocus"
+                       class="form-control" required th:field="*{name}">
+                <p class="error" th:errors="*{name}"></p>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="eventDescription" class="col-sm-2 col-form-label">Description</label>
+            <div class="col-sm-6">
+                <textarea id="eventDescription" class="form-control" required
+                          th:field="*{eventDetails.description}"></textarea>
+                <p class="error" th:errors="*{eventDetails.description}"></p>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="contactEmail" class="col-sm-2 col-form-label">Contact Email</label>
+            <div class="col-sm-6">
+                <input type="email" id="contactEmail" class="form-control" required
+                       th:field="*{eventDetails.contactEmail}">
+                <p class="error" th:errors="*{eventDetails.contactEmail}"></p>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="eventCategory" class="col-sm-2 col-form-label">Category</label>
+            <div class="col-sm-6">
+                <select id="eventCategory" class="form-select" required
+                        th:field="*{eventCategory}">
+                    <option th:each="category : ${categories}"
+                            th:value="${category.id}"
+                            th:text="${category.name}">
+                    </option>
+                </select>
+                <p class="error" th:errors="*{eventCategory}"></p>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <button type="submit" class="btn btn-success">Create Event</button>
+        </div>
+    </form>
+</div>
+
+<div th:replace="~{fragments1 :: footer}"></div>
+</body>
+</html>

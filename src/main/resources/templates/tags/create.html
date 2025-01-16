@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{fragments1 :: head}"></head>
+
+<body>
+<div class="body">
+    <h1>Create Tag</h1>
+
+    <div th:switch="${creationSuccess}">
+        <div th:case="'Success'" class="alert alert-success">
+            <strong>Success!</strong> Tag created successfully.
+        </div>
+        <div th:case="'Failed'" class="alert alert-danger">
+            <strong>Failure!</strong> Tag creation failed. Please try again.
+        </div>
+    </div>
+
+    <form th:action="@{/tags/create}" method="post" th:object="${tag}" class="px-4">
+        <div class="mb-3 row">
+            <label for="tagName" class="col-sm-2 col-form-label">Tag Name</label>
+            <div class="col-sm-6">
+                <input type="text" id="tagName" autofocus="autofocus"
+                       class="form-control" required name="name" th:field="*{name}">
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <button type="submit" class="btn btn-success">Create Tag</button>
+        </div>
+    </form>
+</div>
+
+<div th:replace="~{fragments1 :: footer}"></div>
+</body>
+</html>

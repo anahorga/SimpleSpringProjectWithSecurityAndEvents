@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+<head th:replace="~{fragments1 :: head}"></head>
+
+<body>
+<div class="body">
+    <h1>Add Tag to Event</h1>
+
+    <div th:switch="${addTagSuccess}">
+        <div th:case="'Success'" class="alert alert-success">
+            <strong>Success!</strong> Tag added successfully.
+        </div>
+        <div th:case="'Failed'" class="alert alert-danger">
+            <strong>Failure!</strong> Failed to add tag. Please try again.
+        </div>
+    </div>
+
+    <form th:action="@{/events/add-tag}" method="post" th:object="${eventTag}" class="px-4">
+        <div class="mb-3 row">
+            <label for="eventId" class="col-sm-2 col-form-label">Event</label>
+            <div class="col-sm-6">
+                <input type="hidden" id="eventId" th:field="*{event}" class="form-control">
+                <p class="error" th:errors="*{event}"></p>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label for="tag" class="col-sm-2 col-form-label">Tag</label>
+            <div class="col-sm-6">
+                <select id="tag" class="form-select" required th:field="*{tag}">
+                    <option th:each="tag : ${tags}"
+                            th:value="${tag.id}"
+                            th:text="${tag.name}">
+                    </option>
+                </select>
+                <p class="error" th:errors="*{tag}"></p>
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <button type="submit" class="btn btn-success">Add Tag</button>
+        </div>
+    </form>
+</div>
+
+<div th:replace="~{fragments1 :: footer}"></div>
+</body>
+</html>
