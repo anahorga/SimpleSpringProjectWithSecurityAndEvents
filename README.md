@@ -3,6 +3,12 @@
 ## Overview
 This project is a web application built using the **Spring Framework**, designed with a simple UI but backed by a complex and well-structured architecture. It follows best practices in software development, ensuring security, maintainability, and scalability.
 
+![image alt](https://github.com/anahorga/springboot-auth-events/blob/0035d94be8d293e3101f2b78a2a4b2c38f37a59d/Screenshot%202025-02-20%20140039.png)
+
+![image alt](https://github.com/anahorga/springboot-auth-events/blob/0035d94be8d293e3101f2b78a2a4b2c38f37a59d/Screenshot%202025-02-20%20140156.png)
+
+![image alt](https://github.com/anahorga/springboot-auth-events/blob/0035d94be8d293e3101f2b78a2a4b2c38f37a59d/Screenshot%202025-02-20%20140224.png)
+
 ## Features
 - **Spring Boot** - Rapid development with embedded Tomcat.
 - **Spring Security** - Implements authentication and authorization.
